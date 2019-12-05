@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+
+}
+
+.player{
+    position: absolute;
+    padding: 10px;
+    /* border: 2px solid black; */
+    width: 300px;
+    text-align: center;
+}
+
+.batman{
+    top: 100px;
+    left: 25%;
+    transform: translateX(-50%)
+}
+
+.joker{
+    top: 100px;
+    right: 25%;
+    transform: translateX(50%)
+}
+
+.attr{
+    font-size: 20px;
+    font-family: Chilanka;
+    padding: 10px;
+}
+
+.player__name{
+    color: blue;
+    display: block;
+}
+
+.player__energy{
+    position: absolute;
+    left: 50%;
+    top: -12px;
+    transform: translateX(-50%);
+    display: block;
+    font-family: Cute Font;
+    font-size: 30px;
+    /* margin-top: 10px; */
+}
+
+.player__skill{
+    color: red;
+    display: block;
+}
+
+.playerWall{
+    background-color: gray;
+    width: 30px;
+    height: 150px;
+    display: inline-block;
+}
+
+.playerWallbatman{
+    position: absolute;
+    left: 280px;
+    opacity: 0;
+    top: 19%;
+}
+
+.playerWalljoker{
+    position: absolute;
+    left: -30px;
+    top: 19%;
+}
+
+.shieldImage{
+    height: 150px;
+    width: 50px;
+}
+
+.fire{
+    margin-top: 80px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    transition: all 4s;
+}
+.fire img{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    top: 0px;
+}
+.fire span{
+    position: absolute;
+    left: 50%;
+    z-index: 4;
+    font-family: Cute Font;
+    font-size: 24px;
+    top: 80%;
+}
