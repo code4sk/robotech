@@ -16,9 +16,7 @@ class Model extends React.Component {
         this.setState({a:0})
     }
     render(){
-        console.log('re-render');
         let a = this.props.show;
-        console.log('sk',a);
         if(this.closeModel===1||a===0){
             return null
         }

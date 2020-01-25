@@ -1,15 +1,29 @@
 import React from 'react'
 import Player from './player/player';
+import Allies from './allies/allies';
 
 class Players extends React.Component{
+
+    changePlayer = (index) => {
+        if(index < 5)
+        this.props.changePlayer(index);
+    }
   
     render(){
+        let plrA = this.props.state.playerList[this.props.state.a];
+        let plrB = this.props.state.playerList[this.props.state.b];
+        let valueA = this.props.state.valueA;
+        let typeA = this.props.state.typeA;
+        let typeB = this.props.state.typeB;
+        let valueB = this.props.state.valueB;
           return(
             <div>
-                <Player name="batman" energy={this.props.energyA} attackValue={this.props.valueA}
-                    wall={this.props.wallA} image="batman" shieldImage="shieldA" attackType={this.props.typeA} />
-                <Player name="joker" energy={this.props.energyB} attackValue={this.props.valueB}
-                    wall={this.props.wallB} image="joker" shieldImage="shieldB" attackType={this.props.typeB} />
+                <Player flag={0} index={plrA.index} energy={plrA.energy} attackValue={valueA}
+                    wall={plrA.wall} image="batman" shieldImage="shieldA" attackType={typeA} />
+                <Allies main={this.props.state.a} playerList={this.props.state.playerList} flag={0} changePlayer={this.changePlayer}/>
+                <Player flag={1} index={plrB.index} energy={plrB.energy} attackValue={valueB}
+                    wall={plrB.wall} image="joker" shieldImage="shieldB" attackType={typeB} />
+                <Allies main={this.props.state.b} playerList={this.props.state.playerList} flag={1} changePlayer={this.changePlayer}/>
             </div>
         )
     }

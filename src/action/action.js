@@ -1,15 +1,32 @@
 import React from 'react'
+import fireAudio from './gun.mp3'
+import shieldAudio from './shield.mp3'
 
 class Action extends React.Component{
-    energyA = 20;
-    energyB = 20;
-    wallA = 0;
-    wallB = 0;
-    attackTypeA = 0;
-    attackTypeB = 0;
-    attackValueA = 0;
-    attackValueB = 0;
+  audioAttack = new Audio(fireAudio);
+  audioDefence = new Audio(shieldAudio);
+  energyA = 0;
+  energyB = 0;
+  wallA = 0;
+  wallB = 0;
+  attackTypeA = 0;
+  attackTypeB = 0;
+  attackValueA = 0;
+  attackValueB = 0;
+
+    funRestPlayer = () => {
+      let lst = this.props.state.playerList;
+      for(let i=0;i<10;i++){
+        let en = this.props.state.playerList[i].energy;
+        if(en >= 0 && en < 20 && i != this.props.state.a && i != this.props.state.b){
+          lst[i].energy += 1;
+        }
+      }
+      this.props.restPlayer(lst);
+    }
+
     funAttack = (attack, wall, energy) => {
+      this.audioAttack.play();
         if(wall > 0){
           if(wall >= attack){
             wall -= attack;
@@ -30,6 +47,7 @@ class Action extends React.Component{
         }
         else{
           wallB += c;
+          this.audioDefence.play();
         }
         return [energyA, wallA, wallB];
       }
@@ -40,8 +58,10 @@ class Action extends React.Component{
         this.attackValueB = c;
         [this.energyA, this.wallA, this.wallB] = this.funChoiceExecute(b, c, this.energyA,
              this.wallA, this.wallB);
-        this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB, this.wallB,
-             this.attackTypeB, this.attackValueB)
+        this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB,
+           this.wallB, this.attackTypeB, this.attackValueB, this.props.state.a, this.props.state.b, this.nextFun,
+           1, b);
+        this.props.currentPlayerCheck();
       }
     funClickAttack = () => {
         let a = Math.floor(Math.random()*10);
@@ -49,7 +69,11 @@ class Action extends React.Component{
         console.log(a);
         this.attackValueA = a;
         this.attackTypeA = 0;
-        setTimeout(this.nextFun, 500);
+        this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB,
+          this.wallB, this.attackTypeB, this.attackValueB, this.props.state.a, this.props.state.b, this.nextFun,
+          0, 0 );
+          this.funRestPlayer();
+        //setTimeout(this.nextFun, 4000);
       }
     funClickDefence = () => {
       let a = Math.floor(Math.random()*10);
@@ -57,15 +81,47 @@ class Action extends React.Component{
       this.attackValueA = a;
       console.log(a);
       this.attackTypeA = 1;
-      setTimeout(this.nextFun, 500);
+      this.audioDefence.play();
+      this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB,
+        this.wallB, this.attackTypeB, this.attackValueB, this.props.state.a, this.props.state.b, this.nextFun,
+        0, 1 );
+        this.funRestPlayer();
+      //setTimeout(this.nextFun, 1000);
     }
     render(){
+      this.energyA = this.props.state.playerList[this.props.state.a].energy;
+    this.energyB = this.props.state.playerList[this.props.state.b].energy;
+    this.wallA = this.props.state.playerList[this.props.state.a].wall;
+    this.wallB = this.props.state.playerList[this.props.state.b].wall;
+    this.attackTypeA = this.props.state.typeA;
+    this.attackTypeB = this.props.state.typeB;
+    this.attackValueA = this.props.state.valueA;
+    this.attackValueB = this.props.state.valueB;
+    let btnAttackClassName = "btn btn-fire";
+    let btnDefClassName = "btn btn-shield";
+    if(this.energyA < 0 || this.energyB < 0){
+      btnAttackClassName += " disable";
+      btnDefClassName += " disable";
+    }
         return(
             <div className="action">
-                <button onClick={this.funClickDefence} className="btn btn-shield">Defence</button>
-                <button onClick= {this.funClickAttack} className="btn btn-fire">Attack</button>
+                <button id="defenceBtn" onClick={this.funClickDefence} className={btnDefClassName}>Defence</button>
+                <button id="attackBtn" onClick= {this.funClickAttack} className={btnAttackClassName}>Attack</button>
             </div>
         )
+    }
+    aF = (e) =>{
+      if(this.energyA < 0 || this.energyB < 0)
+      return;
+      if(e.keyCode === 39){
+        this.funClickAttack();
+      }
+      else if(e.keyCode === 37){
+        this.funClickDefence();
+      }
+    }
+    componentDidMount(){
+      document.addEventListener("keydown", this.aF);
     }
 }
 

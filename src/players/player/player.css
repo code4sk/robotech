@@ -11,14 +11,14 @@
     text-align: center;
 }
 
-.batman{
-    top: 100px;
+.player0{
+    top: 10px;
     left: 25%;
     transform: translateX(-50%)
 }
 
-.joker{
-    top: 100px;
+.player1{
+    top: 10px;
     right: 25%;
     transform: translateX(50%)
 }
@@ -57,14 +57,14 @@
     display: inline-block;
 }
 
-.playerWallbatman{
+.playerWall0{
     position: absolute;
     left: 280px;
     opacity: 0;
     top: 19%;
 }
 
-.playerWalljoker{
+.playerWall1{
     position: absolute;
     left: -30px;
     top: 19%;
@@ -95,4 +95,8 @@
     font-family: Cute Font;
     font-size: 24px;
     top: 80%;
+}
+
+.characterImage{
+    margin-left: 10px;
 }

@@ -1,0 +1,42 @@
+.alliesBox{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 160px;
+    margin-top: 120px;
+}
+
+.allies{
+    text-align: center;
+    display: inline;
+    padding: 0px 40px;
+}
+
+.allies img{
+    cursor: pointer;
+    width: 70px;
+    height: 80px;
+}
+
+.allies img:hover{
+    border: 1px solid black;
+}
+
+.allies span{
+    display: block;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-family: Chilanka;
+}
+
+.lost {
+    opacity: .2;
+}
+
+.enemey{
+    position: absolute;
+    top: -120px;
+    right: 0px;
+    margin: 120px 20px;
+    width: 160px;
+}

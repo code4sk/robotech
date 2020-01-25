@@ -65,7 +65,7 @@
 }
 .action{
   position: absolute;
-  top: 420px;
+  top: 320px;
   left: 25%;
   transform: translateX(-50%);
 }
@@ -153,3 +153,78 @@
     transform: scale(1.3);
     opacity: 0; }
 
+
+.disable{
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.score-board{
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-image: url("dcvsmarvel.jpg");
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.score-board span{
+  position: relative;
+  font-size: 150px;
+  font-family: Indie Flower;
+  z-index: 4;
+  transition: all .2s;
+}
+
+.scoreA{
+  position: relative;
+  left: -6%;
+  top: -3%;
+  animation: showScore .1s linear;
+}
+
+.scoreB{
+  position: relative;
+  left: +6%;
+  top: 40%;
+  animation: showScore .1s linear;
+}
+
+@keyframes showScore{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes hideScore{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.red{
+  color: red;
+}
+
+.blue{
+  color: blue;
+}
+
+body{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
