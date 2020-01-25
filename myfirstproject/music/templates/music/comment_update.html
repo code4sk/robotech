@@ -1,0 +1,12 @@
+{%extends 'music\base.html'%}
+{%block content%}
+<h2><i>UPDATE YOUR COMMENT</i></h2>
+<form action="{% url 'link5' val1=val1 val2=val2 val3=val3 val4=val4 %}" name="update" method="post">
+    {% csrf_token %}
+    <div>
+    {{form.comment}}
+        <button type="submit">POST</button>
+        {{form.comment.errors}}
+    </div>
+</form>
+{%endblock%}

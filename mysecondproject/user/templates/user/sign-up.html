@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" href="/static/rhi_fav.png"/>
+    <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+</head>
+<style>
+    input{
+        width: 250px;
+        height:26px;
+    }
+    img{
+        position: relative;
+        width:200px;
+        height:100px;
+        left:666px;
+    }
+    input:focus{
+        box-shadow:0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset;
+    }
+    div.box{
+        position: absolute;
+        left:600px;
+        border-color: gray;
+        border-style: solid;
+        border-width: 1px;
+        padding: 50px;
+        padding-top: 30px;
+
+    }
+    div.error{
+        position: absolute;
+        top:180px;
+        left:450px;
+        border-color: red;
+        border-style: solid;
+        border-width: 1px;
+        padding: 40px;
+        margin: 0px;
+        width: 300px;
+    }
+    img.error{
+        position:fixed;
+        top:294px;
+        left: 1207px;
+        width:70px;
+        height:70px;
+    }
+    span{
+        font-family: 'Adamina';
+
+    }
+    span.error{
+        font-family: 'Adamina';
+        color: red;
+    }
+    button{
+        width:256px;
+        background: rgb(255,190,0);
+        height: 35px;
+    }
+    button:hover{
+        background:rgb(240,180,0);
+    }
+</style>
+<body>
+    <img src="/static/rhi_logo.png">
+    <br>
+<div class="box">
+    <span style="font-size: 30px;font-weight:400;">Sign-up</span><br><br>
+<form action="{% url 'user:sign-up' %}" method="post">
+    {% csrf_token %}
+    <span>Username:</span><br>
+    {{form.username}}<br><br>
+    <span>First name:</span><br>
+    {{form.first_name}}<br><br>
+    <span>Last name:</span><br>
+    {{form.last_name}}<br><br>
+    <span>Password:</span><br>
+    {{form.password1}}<br><br>
+    <span>Password Confirmation:</span><br>
+    {{form.password2}}<br><br>
+    <span>Email:</span><br>
+    <input type="text" name="email"><br><br>
+    <button type="submit">Sign Up</button><br>
+    {%if form.errors%}
+    <div class="error">
+        <img class="error" src="/static/error.png">
+        <br><br>
+        <ul>
+    {% for field in form %}
+    {% for error in field.errors %}
+            <li><span class="error">{{error}}</span></li>
+    {%endfor%}
+    {%endfor%}
+    {% for error in form.non_field_errors %}
+    <li><span class="error">{{error}}</span></li>
+    {% endfor %}
+        </ul>
+    </div>
+    {%endif%}
+</form>
+</div>
+</body>
+</html>

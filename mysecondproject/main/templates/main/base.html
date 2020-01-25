@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="icon" href="/static/rhi_fav.png"/>
+    <link rel="stylesheet" href="/static/css/home.css" type="text/css"/>
+    <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+</head>
+{%block style%}
+{%endblock%}
+<body>
+<div class="strip">
+<a href="{% url 'home' %}"><img src="/static/rhi_logo1.JPG" class="logo"></a>
+<a href="{% url 'home' %}" class="home_nav"><div class="home">
+    <img src="/static/home.png" class="home_nav"><span class="home_nav">Home</span></div></a>
+        {%if request.user.is_authenticated == False%}
+    <a href="{% url 'user:login' %}" class="login_nav"><img src="/static/login.png" class="login_nav">
+        <span class="login_nav">Login</span></a>
+    <a href="{% url 'user:sign-up' %}" class="sign-up_nav"><img src="/static/sign-up.png"
+        class="sign-up_nav"><span class="sign-up_nav">Sign up</span></a>
+        {%else%}
+    <a href="{% url 'user:logout' %}" class="logout_nav">
+        <img src="/static/logout.png" class="logout_nav">
+        <span class="logout_nav">Logout</span></a>
+    <a href="{% url 'cart' %}" class="cart_nav">
+            <img src="/static/cart.png" class="cart_nav">
+            <span class="cart_nav">Cart</span></a>
+        {% endif %}
+</div>
+{%block content%}
+{%endblock%}
+</body>
+</html>

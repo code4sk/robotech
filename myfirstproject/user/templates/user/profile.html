@@ -1,0 +1,11 @@
+{%extends 'registration\base_user.html'%}
+{%block content%}
+<div>
+    <h3>Username:</h3>  <h4>{{request.user.username}}</h4><br><br>
+    <h3>First name:</h3>  <h4>{{request.user.first_name}}</h4><br><br>
+    <h3>Last name:</h3>  <h4>{{request.user.last_name}}</h4><br><br>
+    <h3>About:</h3>  <h4>{{request.user.profile.about}}</h4>
+</div>
+<li class="nav" style="list-style:none;"><a href="/user/password/change/" style="float:right;padding-right:20px" class="nav">Change your password</a></li>
+<li class="nav" style="list-style:none;"><a href="/user/profile/edit/" style="float:right;padding-right:20px" class="nav">Edit your profile</a></li>
+{%endblock%}

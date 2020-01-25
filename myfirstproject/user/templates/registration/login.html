@@ -1,0 +1,16 @@
+{%extends 'registration\base_user.html'%}
+{%block content%}
+<div>
+<form action="{% url 'user:login' %}" name="login" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Login</button>
+    {% if next %}
+ <input
+ type="hidden"
+ name="next"
+ value="{{ next }}">
+ {% endif %}
+</form>
+</div>
+{%endblock%}

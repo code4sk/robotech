@@ -1,0 +1,12 @@
+{%extends 'music\base.html'%}
+{%block content%}
+<div align="center">
+    <h2><font size="+3">{{artist.name}}</font></h2>
+    <img src={{artist.image}}>
+</div>
+{%for album in album_list%}
+<ul>
+    <li><a style="text-decoration:none" href="{%url 'link2' val1=artist.slug val2=album.slug %}"><font size="+2">{{album}}</font></a></li>
+</ul>
+{%endfor%}
+{%endblock%}

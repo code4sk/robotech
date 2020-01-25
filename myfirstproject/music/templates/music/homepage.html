@@ -1,0 +1,105 @@
+{%extends 'music\base.html'%}
+{%block content%}
+<style>
+    h2{
+display:inline;
+}
+img.watermark_halsey{
+position:fixed;
+top:45px;
+right:0px;
+width:400px;
+height:280px;
+z-index:-1;
+}
+img.watermark_selena{
+position:fixed;
+top:0px;
+right:400px;
+width:400px;
+height:325px;
+z-index:-1;
+}
+img.watermark_ellie{
+position:fixed;
+top:375px;
+right:0px;
+width:400px;
+height:280px;
+z-index:-1;
+}
+img.watermark_ariana{
+position:fixed;
+top:395px;
+right:400px;
+width:400px;
+height:265px;
+z-index:-1;
+}
+img.watermark{
+position:fixed;
+top:5px;
+left:0px;
+width:900px;
+height:100%;
+z-index:-1;
+}
+img.name{
+position:fixed;
+bottom:0px;
+left:5px;
+z-index:5;
+width:350px;
+}
+img.name_halsey{
+position:absolute;
+right:50px;
+z-index:5;
+top:325px;
+width:206px;
+height:65px;
+}
+img.name_selena{
+position:absolute;
+right:480px;
+z-index:5;
+top:325px;
+width:250px;
+height:70px;
+}
+img.name_ellie{
+position:absolute;
+right:70px;
+z-index:5;
+top:655px;
+width:250px;
+height:70px;
+}
+img.name_ariana{
+position:absolute;
+right:480px;
+z-index:5;
+top:660px;
+width:250px;
+height:70px;
+}
+</style>
+<img src="/static/watermark_halsey.JPG" class="watermark_halsey">
+<img src="/static/watermark.JPG" class="watermark">
+<img src="/static/name.JPG" class="name">
+<img src="/static/name_halsey.JPG" class="name_halsey">
+<img src="/static/watermark_selena.JPG" class="watermark_selena">
+<img src="/static/name_selena.JPG" class="name_selena">
+<img src="/static/watermark_ellie.JPG" class="watermark_ellie">
+<img src="/static/name_ellie.JPG" class="name_ellie">
+<img src="/static/watermark_ariana.png" class="watermark_ariana">
+<img src="/static/name_ariana.JPG" class="name_ariana">
+<h2>There are {{artist_list.count}} Artist{{artist_list.count|pluralize}} present</h2>
+    {%  for name in artist_list %}
+    <ul>
+        <li>
+            <a style="text-decoration:none" href="{%url 'link' link=name.slug%}"><font size="+2">{{name|title}}</font></a>
+        </li>
+    </ul>
+    {%endfor%}
+{%endblock%}

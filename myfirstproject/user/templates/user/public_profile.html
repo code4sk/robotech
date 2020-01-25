@@ -1,0 +1,10 @@
+{%extends 'registration\base_user.html'%}
+{%block content%}
+<div>
+    <h3>Username:</h3>  <h4>{{user.username}}</h4><br><br>
+    <h3>First name:</h3>  <h4>{{user.first_name}}</h4><br><br>
+    <h3>Last name:</h3>  <h4>{{user.last_name}}</h4><br><br>
+    <h3>About:</h3>  <h4>{{user.profile.about}}</h4>
+</div>
+<a href="{% url 'home'%}" style="float:right;">Click here to go back to homepage</a>
+{%endblock%}

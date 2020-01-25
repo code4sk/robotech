@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        HOME
+    </title>
+    <link href='F:\myfirstproject\fifaa.png' rel='icon'>
+</head>
+<body bgcolor="pink" text="black">
+    <h3>{{list.count}} Artist{{list.count|pluralize}}<br> present</h3>
+    {%  for name in list %}
+    <ul>
+        <li>
+            <a href=""><font size="+2"><i>{{name|title}}</i></font></a>
+        </li>
+    </ul>
+    {%endfor%}
+    <br>
+</body>
+</html>
