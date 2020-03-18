@@ -1,24 +1,36 @@
 import React from 'react'
 import close from './close.svg'
+import laughAudio from './laugh.mp3'
+import winAudio from './win.mp3'
+
 
 class Model extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {a:props.show}
+    state = {
+        a: 0
     }
+    audioLaugh = new Audio(laughAudio);
+    audioWin = new Audio(winAudio);
     closeModel = 0
     redirectHome = 0
     closeListener = () =>{
-        this.setState({a:0})
-        this.closeModel = 1
+        this.setState({a:!this.state.a});
+        this.closeModel = 1;
     }
     homeListener = () =>{
-        this.setState({a:0})
+        this.setState({a:!this.state.a});
+        this.closeModel = 1;
+        this.props.restartGame();
     }
     render(){
         let a = this.props.show;
         if(this.closeModel===1||a===0){
             return null
+        }
+        if(this.props.winner === "DC"){
+            this.audioWin.play();
+        } else{
+            
+            this.audioLaugh.play();
         }
         return (<div className="model-back" >
         <div className="model">

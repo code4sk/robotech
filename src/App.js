@@ -20,63 +20,84 @@ class App extends React.Component {
     {
       index: 0,
       name: "batman",
-      energy: 20,
+      energy: 18,
+      maxEnergy: 18,
+      luck: 0,
       wall: 0,
     },
     {
       index: 1,
       name: "joker",
-      energy: 20,
+      energy: 15,
+      maxEnergy: 15,
+      luck: 0,
       wall: 0,
     },
     {
       index: 2,
       name: "superman",
       energy: 20,
+      maxEnergy: 20,
+      luck: 0,
       wall: 0,
     },
     {
       index: 3,
       name: "wonder women",
-      energy: 20,
+      energy: 18,
+      maxEnergy: 18,
+      luck: 0,
       wall: 0,
     },
     {
       index: 4,
       name: "flash",
-      energy: 20,
+      energy: 12,
+      maxEnergy: 12,
+      luck: 0,
       wall: 0,
     },
     {
       index: 5,
       name: "thor",
-      energy: 20,
+      energy: 30,
+      maxEnergy: 30,
+      luck: 0,
       wall: 0,
     },
     {
       index: 6,
-      name: "ironman",
-      energy: 20,
+      name: "spiderman",
+      energy: 22,
+      maxEnergy: 22,
+      luck: 0,
       wall: 0,
     },
     {
       index: 7,
       name: "hulk",
-      energy: 20,
+      energy: 25,
+      maxEnergy: 25,
+      luck: 0,
       wall: 0,
     },
     {
       index: 8,
       name: "captain america",
-      energy: 20,
+      energy: 28,
+      maxEnergy: 28,
+      luck: 0,
       wall: 0,
     },
     {
       index: 9,
-      name: "spiderman",
-      energy: 20,
+      name: "ironman",
+      energy: 35,
+      maxEnergy: 35,
+      luck: 0,
       wall: 0,
-    }]
+    },
+    ]
   }
 
   restPlayer = (lst) => {
@@ -130,12 +151,50 @@ class App extends React.Component {
         })
       })
     }
-    else{
-      this.setState({
-        b: index,
-        playerList: lst
-      })
+    // else{
+    //   this.setState({
+    //     b: index,
+    //     playerList: lst
+    //   })
+    // }
+  }
+
+  changePlayerWithTab = () => {
+    let prev = this.state.a;
+    let i;
+    for(i=1;i<=6;i++){
+    let lst = this.state.playerList[(prev + i)%5];
+    if(lst.energy>=0)
+    break
     }
+    this.setState({
+      a: (prev + i)%5,
+    })
+  }
+
+  changePlayerWithArrow = (val) => {
+    let prev = this.state.a;
+    this.setState({
+      a: (prev + val)%5,
+    })
+  }
+
+  restartGame = () => {
+    let lst = this.state.playerList;
+    for(let i=0;i<10;i++){
+      lst[i].energy = lst[i].maxEnergy;
+      lst[i].wall = 0;
+      lst[i].luck = 0;
+    }
+    this.setState({
+      playerList: lst,
+      a: 0, 
+      b: 5,
+      typeA: 0,
+      typeB: 0,
+      valueA: 0,
+      valueB: 0,
+    })
   }
   
   winnerCheck = () => {
@@ -174,7 +233,7 @@ class App extends React.Component {
       this.setState({a: index}); 
     }
     if(this.state.playerList[this.state.b].energy < 0){
-      let index = this.maxEnergyPlayer(5, 10);
+      let index = (this.state.b + 1)%5 + 5;
       this.setState({b: index}); 
     }
   }
@@ -189,16 +248,13 @@ class App extends React.Component {
         winner = "MARVEL";
       }
     }
-    // for(let i=0;i<10;i++){
-    //   console.log(this.state.playerList[i].index, this.state.playerList[i].energy);
-    // }
-    // console.log(this.state.a, this.state.b)
   return (
     <div className="battleArea">
       <Players state={this.state} changePlayer={this.changePlayer}/>
       <Action changeState={this.changeState} state={this.state} currentPlayerCheck={this.currentPlayerCheck}
-      restPlayer={this.restPlayer} />
-      <Model show={show} winner={winner}/>
+      restPlayer={this.restPlayer} changePlayerWithTab={this.changePlayerWithTab}
+      changePlayerWithArrow={this.changePlayerWithArrow} />
+      <Model show={show} winner={winner} restartGame={this.restartGame}/>
       <div className="score-board">
       <span className={"scoreA " + this.scoreClassNameA}>{this.state.valueA}</span>
       <span className={"scoreB " + this.scoreClassNameB}>{this.state.valueB}</span>

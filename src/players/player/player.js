@@ -42,7 +42,7 @@ class Player extends React.Component{
         let strChImage = require("../heroImages/" + this.props.index + ".jpg");
         // let value;
         // let type;
-        this.styleEnergyBar.width = ((this.props.energy/20)*100).toString() + "%";
+        this.styleEnergyBar.width = ((this.props.energy/this.props.maxEnergy)*100).toString() + "%";
         if((this.props.energy)<0)
         {
             this.styleEnergyBar.width = 0;

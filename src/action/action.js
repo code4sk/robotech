@@ -13,14 +13,18 @@ class Action extends React.Component{
   attackTypeB = 0;
   attackValueA = 0;
   attackValueB = 0;
+  luckA = 0;
+  luckB = 0;
 
     funRestPlayer = () => {
       let lst = this.props.state.playerList;
-      for(let i=0;i<10;i++){
+      for(let i=0;i<5;i++){
         let en = this.props.state.playerList[i].energy;
-        if(en >= 0 && en < 20 && i != this.props.state.a && i != this.props.state.b){
+        let b = Math.floor(Math.random()*2);
+        if(en >= 0 && en < this.props.state.playerList[i].maxEnergy && i !== this.props.state.a && i !== this.props.state.b && (this.luckA || b)){
           lst[i].energy += 1;
         }
+        lst[i].luck = !lst[i].luck;
       }
       this.props.restPlayer(lst);
     }
@@ -47,15 +51,20 @@ class Action extends React.Component{
         }
         else{
           wallB += c;
+          wallB = Math.min(wallB, 20)
           this.audioDefence.play();
         }
         return [energyA, wallA, wallB];
       }
       nextFun = () => {
         let b = Math.floor(Math.random()*2);
-        let c = Math.ceil(Math.random()*10);
+        let c = Math.ceil(Math.random()*11);
+        let d = Math.ceil(Math.random()*9);
+        if(this.wallB >= 20){
+          b=0;
+        }
         this.attackTypeB = b;
-        this.attackValueB = c;
+        this.attackValueB = b?d:c;
         [this.energyA, this.wallA, this.wallB] = this.funChoiceExecute(b, c, this.energyA,
              this.wallA, this.wallB);
         this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB,
@@ -76,8 +85,12 @@ class Action extends React.Component{
         //setTimeout(this.nextFun, 4000);
       }
     funClickDefence = () => {
-      let a = Math.floor(Math.random()*10);
+      if(this.wallA >= 20){
+        return;
+      }
+      let a = Math.floor(Math.random()*8); 
       this.wallA += a;
+      this.wallA = Math.min(this.wallA, 20)
       this.attackValueA = a;
       console.log(a);
       this.attackTypeA = 1;
@@ -97,6 +110,8 @@ class Action extends React.Component{
     this.attackTypeB = this.props.state.typeB;
     this.attackValueA = this.props.state.valueA;
     this.attackValueB = this.props.state.valueB;
+    this.luckA = this.props.state.playerList[this.props.state.a].luck;
+    this.luckB = this.props.state.playerList[this.props.state.b].luck;
     let btnAttackClassName = "btn btn-fire";
     let btnDefClassName = "btn btn-shield";
     if(this.energyA < 0 || this.energyB < 0){
@@ -111,8 +126,20 @@ class Action extends React.Component{
         )
     }
     aF = (e) =>{
+      e.preventDefault();
+
+      if(e.keyCode === 9 || e.keyCode === 32){
+        this.props.changePlayerWithTab();
+      } else if(e.keyCode === 38){
+        this.props.changePlayerWithArrow(4);
+      }
+      else if(e.keyCode === 40){
+        this.props.changePlayerWithArrow(+1);
+      }
+
       if(this.energyA < 0 || this.energyB < 0)
       return;
+      
       if(e.keyCode === 39){
         this.funClickAttack();
       }

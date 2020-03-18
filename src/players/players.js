@@ -19,10 +19,10 @@ class Players extends React.Component{
           return(
             <div>
                 <Player flag={0} index={plrA.index} energy={plrA.energy} attackValue={valueA}
-                    wall={plrA.wall} image="batman" shieldImage="shieldA" attackType={typeA} />
+                    wall={plrA.wall} image="batman" shieldImage="shieldA" attackType={typeA} maxEnergy={plrA.maxEnergy} />
                 <Allies main={this.props.state.a} playerList={this.props.state.playerList} flag={0} changePlayer={this.changePlayer}/>
                 <Player flag={1} index={plrB.index} energy={plrB.energy} attackValue={valueB}
-                    wall={plrB.wall} image="joker" shieldImage="shieldB" attackType={typeB} />
+                    wall={plrB.wall} image="joker" shieldImage="shieldB" attackType={typeB} maxEnergy={plrB.maxEnergy} />
                 <Allies main={this.props.state.b} playerList={this.props.state.playerList} flag={1} changePlayer={this.changePlayer}/>
             </div>
         )
