@@ -250,15 +250,12 @@ class App extends React.Component {
     }
   return (
     <div className="battleArea">
-      <Players state={this.state} changePlayer={this.changePlayer}/>
+      <Players state={this.state} changePlayer={this.changePlayer} valueA={this.state.valueA}
+      valueB={this.state.valueB} />
       <Action changeState={this.changeState} state={this.state} currentPlayerCheck={this.currentPlayerCheck}
       restPlayer={this.restPlayer} changePlayerWithTab={this.changePlayerWithTab}
       changePlayerWithArrow={this.changePlayerWithArrow} />
       <Model show={show} winner={winner} restartGame={this.restartGame}/>
-      <div className="score-board">
-      <span className={"scoreA " + this.scoreClassNameA}>{this.state.valueA}</span>
-      <span className={"scoreB " + this.scoreClassNameB}>{this.state.valueB}</span>
-      </div>
     </div>
   );
   }

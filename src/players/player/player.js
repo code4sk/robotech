@@ -12,7 +12,9 @@ class Player extends React.Component{
         wall: this.props.wall,
     }
     styleWall = {
-        opacity: this.state.wall
+        opacity: this.state.wall,
+        fontSize: '16px',
+        margin: '8px'
     }
 
     styleCharacter = {
@@ -42,6 +44,11 @@ class Player extends React.Component{
         let strChImage = require("../heroImages/" + this.props.index + ".jpg");
         // let value;
         // let type;
+        if(this.props.energy == this.props.maxEnergy){
+            this.styleEnergyBar.backgroundColor = 'orange'
+        } else{
+            this.styleEnergyBar.backgroundColor = 'red'
+        }
         this.styleEnergyBar.width = ((this.props.energy/this.props.maxEnergy)*100).toString() + "%";
         if((this.props.energy)<0)
         {
@@ -64,7 +71,8 @@ class Player extends React.Component{
             <div className={str}>
                 <div style={this.styleEnergyBar}><span className="player__energy attr">{this.props.energy}</span></div>
                 <img className="characterImage" style={this.styleCharacter} src={strChImage} alt="character"></img>
-                <div style={this.styleWall} className={str1}><img className="shieldImage" src={strImage} alt="SHIELD"></img>{this.props.wall}</div>
+                <div style={this.styleWall} className={str1}><img className="shieldImage" src={strImage} alt="SHIELD"></img>
+                <span className="shieldValue">{this.props.wall}</span></div>
             </div>
         );
     }

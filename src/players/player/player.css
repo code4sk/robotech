@@ -4,24 +4,21 @@
 }
 
 .player{
-    position: absolute;
+    /* position: absolute; */
     padding: 10px;
     /* border: 2px solid black; */
-    width: 300px;
+    width: 20rem;
     text-align: center;
 }
 
-.player0{
-    top: 10px;
-    left: 25%;
-    transform: translateX(-50%)
+/* .player0{
+    margin-right: 4rem;
 }
 
 .player1{
-    top: 10px;
-    right: 25%;
-    transform: translateX(50%)
-}
+    margin-left: 4rem;
+} */
+
 
 .attr{
     font-size: 20px;
@@ -31,7 +28,7 @@
 
 .player__name{
     color: blue;
-    display: block;
+    /* display: block; */
 }
 
 .player__energy{
@@ -59,15 +56,16 @@
 
 .playerWall0{
     position: absolute;
-    left: 280px;
+    left: 470px;
     opacity: 0;
-    top: 19%;
+    top: 15%;
 }
 
 .playerWall1{
     position: absolute;
-    left: -30px;
-    top: 19%;
+    left: 875px;
+    opacity: 0;
+    top: 15%;
 }
 
 .shieldImage{
@@ -99,4 +97,17 @@
 
 .characterImage{
     margin-left: 10px;
+}
+
+.mainContainer{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+    padding: 2rem;
+}
+
+.shieldValue{
+    position: absolute;
+
 }

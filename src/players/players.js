@@ -16,14 +16,20 @@ class Players extends React.Component{
         let typeA = this.props.state.typeA;
         let typeB = this.props.state.typeB;
         let valueB = this.props.state.valueB;
+        let classA = (!typeA?"red": "blue");
+        let classB = (!typeB?"red": "blue");
           return(
-            <div>
+            <div className="mainContainer">
+                <Allies main={this.props.state.a} playerList={this.props.state.playerList} flag={0} changePlayer={this.changePlayer}/>
                 <Player flag={0} index={plrA.index} energy={plrA.energy} attackValue={valueA}
                     wall={plrA.wall} image="batman" shieldImage="shieldA" attackType={typeA} maxEnergy={plrA.maxEnergy} />
-                <Allies main={this.props.state.a} playerList={this.props.state.playerList} flag={0} changePlayer={this.changePlayer}/>
+                <div className="score-board">
+                    <span className={"scoreA " + classA}>{this.props.valueA}</span>
+                    <span className={"scoreB " + classB}>{this.props.valueB}</span>
+                </div>
                 <Player flag={1} index={plrB.index} energy={plrB.energy} attackValue={valueB}
-                    wall={plrB.wall} image="joker" shieldImage="shieldB" attackType={typeB} maxEnergy={plrB.maxEnergy} />
-                <Allies main={this.props.state.b} playerList={this.props.state.playerList} flag={1} changePlayer={this.changePlayer}/>
+                wall={plrB.wall} image="joker" shieldImage="shieldB" attackType={typeB} maxEnergy={plrB.maxEnergy} />
+                <Allies main={this.props.state.b} playerList={this.props.state.playerList} flag={1} changePlayer={this.changePlayer}/>          
             </div>
         )
     }
