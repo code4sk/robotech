@@ -65,7 +65,7 @@ class Action extends React.Component{
         }
         this.attackTypeB = b;
         this.attackValueB = b?d:c;
-        [this.energyA, this.wallA, this.wallB] = this.funChoiceExecute(b, c, this.energyA,
+        [this.energyA, this.wallA, this.wallB] = this.funChoiceExecute(b, this.attackValueB, this.energyA,
              this.wallA, this.wallB);
         this.props.changeState(this.energyA, this.wallA, this.attackTypeA, this.attackValueA, this.energyB,
            this.wallB, this.attackTypeB, this.attackValueB, this.props.state.a, this.props.state.b, this.nextFun,
