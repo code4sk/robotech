@@ -23,6 +23,7 @@ class App extends React.Component {
       energy: 18,
       maxEnergy: 18,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -31,6 +32,7 @@ class App extends React.Component {
       energy: 15,
       maxEnergy: 15,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -39,6 +41,7 @@ class App extends React.Component {
       energy: 20,
       maxEnergy: 20,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -47,6 +50,7 @@ class App extends React.Component {
       energy: 18,
       maxEnergy: 18,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -55,6 +59,7 @@ class App extends React.Component {
       energy: 12,
       maxEnergy: 12,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -63,6 +68,7 @@ class App extends React.Component {
       energy: 30,
       maxEnergy: 30,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -71,6 +77,7 @@ class App extends React.Component {
       energy: 22,
       maxEnergy: 22,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -79,6 +86,7 @@ class App extends React.Component {
       energy: 25,
       maxEnergy: 25,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -87,6 +95,7 @@ class App extends React.Component {
       energy: 28,
       maxEnergy: 28,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     {
@@ -95,6 +104,7 @@ class App extends React.Component {
       energy: 35,
       maxEnergy: 35,
       luck: 0,
+      win: 0,
       wall: 0,
     },
     ]
@@ -134,6 +144,11 @@ class App extends React.Component {
           valueA: valueA,
           valueB: valueB,
           playerList: lst
+        }, () => {
+          if(flag == 1){
+            lst[this.state.a].win += (valueA > valueB);
+          console.log("win",lst[this.state.a].win);
+          }
         })
       }
     }
