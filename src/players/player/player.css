@@ -56,14 +56,14 @@
 
 .playerWall0{
     position: absolute;
-    left: 470px;
+    left: 488px;
     opacity: 0;
     top: 15%;
 }
 
 .playerWall1{
     position: absolute;
-    left: 875px;
+    right: 513px;
     opacity: 0;
     top: 15%;
 }
